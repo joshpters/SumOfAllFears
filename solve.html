@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FizzBuzz Challenge</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="Content/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+
+    <div id="window">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="/Index.html">Sunset Hills</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Solve.html">Solve</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Code.html">Code</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Git</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog Post/YouTube Explanation</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <!-- Page Content -->
+    <div class="content content-centered">
+        <div class="container full-height" id="content-container">
+            <div class="row text-center">
+                <div class="col">
+                    <h1>Sum Of All Fears</h1>
+                </div>
+            </div>
+            <div class="row text-center bottom-buffer">
+                <div class="col-xl-10 col-sm-12">
+                    <input type="text" id="answer-input" class="input-string" value="" placeholder="Answer Value" />
+                </div>
+                <div class="col-xl-2 col-sm-12">
+                    <button class="custom-button full-width" id="run"><span class="glyphicon glyphicon-repeat"></span>RUN</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="grid-container" id="grid-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="//code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script>
+        let numbers = generateArrayOfNumbers(48, 100)
+        colors = ['#556b2f', '#8b4513', '#483d8b', '#008000', '#008b8b', '#4682b4', '#000080', '#daa520', '#9acd32', '#8b008b', '#b03060', '#ff0000', '#ffff00', '#7cfc00', '#00ff7f', '#dc143c', '#0000ff', '#ff7f50', '#ff00ff', '#f0e68c', '#b0e0e6', '#7b68ee', '#ee82ee', '#7fffd4', '#ffb6c1']
+
+        function generateGrid() {
+            let gridContainer = document.getElementById('grid-container')
+            numbers.forEach(item => {
+                gridContainer.innerHTML += `<div class="grid-item" id="value-${item}">${item}</div>`
+            })
+        }
+
+        generateGrid()
+
+        function resetColors() {
+            document.querySelectorAll('.grid-item').forEach(item => {
+                item.style.backgroundColor = "";
+            })
+        }
+
+        document.getElementById('run').addEventListener('click', function (e) {
+            resetColors();
+            let value = Number(document.getElementById('answer-input').value)
+            sumOfAllFears(numbers, value).forEach((match, i) => {
+                setTimeout(() => {
+                    color = getRandomColor()
+                    match.forEach(matchValue => {
+                        document.getElementById(`value-${matchValue}`).style.backgroundColor = "white";
+                        setTimeout(function () {
+                            document.getElementById(`value-${matchValue}`).style.backgroundColor = colors[i];
+                        }, 500)
+                    })
+                }, i * 500);
+            })
+        })
+
+
+        //generate an array of numbers, no duplicates
+        function generateArrayOfNumbers(amountOfNumbers, highestValue) {
+            let output = []
+            for (i = 0; i < amountOfNumbers; i++) {
+                number = randomNumber(highestValue);
+                while (true) {
+                    if (output.includes(number)) {
+                        number += 1;
+                        continue;
+                    }
+                    output.push(number)
+                    break;
+                }
+                
+            }
+            return output;
+        }
+
+        function randomNumber(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        function sumOfAllFears(fears, sum) {
+            matches = []
+            let loops = 0;
+            for (r = 0; r < fears.length; r++) {
+                for (i = r + 1; i < fears.length; i++) {
+                    loops += 1;
+                    if (fears[r] + fears[i] == sum) {
+                        matches.push([fears[r], fears[i]])
+                    }
+                }
+            }
+            console.log(loops)
+            return matches;
+        }
+
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        
+    </script>
+
+</body>
+
+</html>
