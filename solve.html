@@ -84,6 +84,7 @@
     <script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
     <script>
+        let state = true;
         let numbers = generateArrayOfNumbers(48, 100)
         colors = ['#556b2f', '#8b4513', '#483d8b', '#008000', '#008b8b', '#4682b4', '#000080', '#daa520', '#9acd32', '#8b008b', '#b03060', '#ff0000', '#ffff00', '#7cfc00', '#00ff7f', '#dc143c', '#0000ff', '#ff7f50', '#ff00ff', '#f0e68c', '#b0e0e6', '#7b68ee', '#ee82ee', '#7fffd4', '#ffb6c1']
 
@@ -104,17 +105,24 @@
 
         document.getElementById('run').addEventListener('click', function (e) {
             resetColors();
+            toggleState();
             let value = Number(document.getElementById('answer-input').value)
-            sumOfAllFears(numbers, value).forEach((match, i) => {
+            let fears = sumOfAllFears(numbers, value)
+            fears.forEach((match, i) => {
                 setTimeout(() => {
                     color = getRandomColor()
                     match.forEach(matchValue => {
+                        console.log(typeof matchValue)
                         document.getElementById(`value-${matchValue}`).style.backgroundColor = "white";
                         setTimeout(function () {
+                            console.log(i, fears.length)
                             document.getElementById(`value-${matchValue}`).style.backgroundColor = colors[i];
-                        }, 500)
+                            if (i == fears.length - 1) {
+                                toggleState();
+                            }
+                        }, 150)
                     })
-                }, i * 500);
+                }, i * 300);
             })
         })
 
@@ -163,6 +171,27 @@
                 color += letters[Math.floor(Math.random() * 16)];
             }
             return color;
+        }
+
+        function toggleState() {
+            button = document.getElementById("run");
+            answerInput = document.getElementById("answer-input");
+            if (state) {
+                button = document.getElementById("run");
+
+                button.classList.remove('custom-button');
+                button.classList.add('custom-button-disabled');
+
+                button.disabled = true;
+                answerInput.disabled = true;
+                state = false;
+                return;
+            }
+            button.classList.remove('custom-button-disabled');
+            button.classList.add('custom-button');
+            button.disabled = false;
+            answerInput.disabled = false;
+            state = true;
         }
 
         
