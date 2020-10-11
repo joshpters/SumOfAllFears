@@ -2,6 +2,8 @@
 
 This is a complete minisite that contains a visual representation of the "Sum Of All Fears" challenge.
 
+This project was created using Bootstrap 4.5, HTML5, CSS3, and JavaScript. All logic & JavaScript DOM changes were custom coded for this project.
+
 ## What is the "Sum Of All Fears" challenge?
 
 Given a list of numbers and a number K, return whether any two numbers from the list add up to K.
@@ -51,8 +53,6 @@ function sumOfAllFearsB(fears, k) {
     return false;
 }
 ```
-
-This project was created using Bootstrap 4.5, HTML5, CSS3, and JavaScript. All logic & JavaScript DOM changes were custom coded for this project.
 
 
 ## Contributing
