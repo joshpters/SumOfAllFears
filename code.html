@@ -39,13 +39,10 @@
                             <a class="nav-link active" href="/Code.html">Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Git</a>
+                            <a class="nav-link" href="https://github.com/joshpters/SunsetHills">Git</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog Post/YouTube Explanation</a>
+                            <a class="nav-link" href="https://joshua-peters.netlify.app">Portfolio</a>
                         </li>
                     </ul>
                 </div>
@@ -58,6 +55,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h1 class="mt-5">Code Preview</h1>
+                        <p>These are snippets of code from the core of this project. Features such as animations and dynamic DOM changes are not included here.</p>
                     </div>
                 </div>
                 <div class="row customNav">
@@ -77,62 +75,88 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="javascript" role="tabpanel" aria-labelledby="home-tab">
                                 <pre>
-<code class="language-js line-numbers">
-function tacocat() {
-    inputText = document.getElementById('input-string').value
-    output = document.getElementById('output')
-
-    if (!inputText) {
-    output.style.border = "1px solid red"
-    output.style.color = "red"
-    output.innerHTML = "Please enter some text to reverse."
-    return
+<code class="language-js line-numbers">//function that finds all matches
+function sumOfAllFearsA(fears, k) {
+    matches = [];
+    for (r = 0; r < fears.length; r++) {
+        for (i = r + 1; i < fears.length; i++) {
+            if (fears[r] + fears[i] == k) {
+                matches.push([fears[r], fears[i]])
+            }
+        }
     }
-
-    output.style.border = "1px solid #fcd088"
-    output.style.color = "#fcd088"
-
-
-    output.innerHTML = reverseText(inputText);
-
-    outputText = reverseText(inputText);
-
-    if (validate(inputText, outputText)){
-    console.log("TACOCAT!!!")
-    }
-
+    return matches;
 }
 
-function validate(textOne, textTwo) {
-textOne = textOne.replace(/\s|\'|\"/g, '');
-textTwo = textTwo.replace(/\s|\'|\"/g, '');
-
-if (textOne.toLowerCase() == textTwo.toLowerCase()) {
-    return true;
-}
-
+//function that returns true or false
+function sumOfAllFearsB(fears, k) {
+    for (r = 0; r < fears.length; r++) {
+        for (i = r + 1; i < fears.length; i++) {
+            if (fears[r] + fears[i] == k) {
+                return true;
+            }
+        }
+    }
     return false;
 }
-
-function reverseText(text) {
-    let output = "";
-    for (let i = text.length - 1; i >= 0; i--) {
-        output += text[i];
-    }
-    return output;
-}
-
-document.getElementById('solve-button').addEventListener('click', function (event) {
-    tacocat();
-});
 </code>
                                             </pre>
                             </div>
-                            <div class="tab-pane fade" id="html" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                            <div class="tab-pane fade" id="css" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                        </div>
-                        <!-- COLLAPSIBLE CODE PREVIEW -->
-                        <!--<div class="accordion" id="accordionExample">
+                            <div class="tab-pane fade" id="html" role="tabpanel" aria-labelledby="profile-tab">
+<pre>
+<code class="language-html line-numbers">&lt;!-- Page Content --&gt;
+&lt;div class="content content-centered"&gt;
+    &lt;div class="container full-height" id="content-container"&gt;
+        &lt;div class="row text-center"&gt;
+            &lt;div class="col"&gt;
+                &lt;h1&gt;Sum Of All Fears&lt;/h1&gt;
+                &lt;p&gt;Provide a number and see which sets of numbers will add to that number.&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="row text-center bottom-buffer"&gt;
+            &lt;div class="col-xl-10 col-sm-12"&gt;
+                &lt;input type="text" id="answer-input" class="input-string" value="" placeholder="Answer Value" /&gt;
+            &lt;/div&gt;
+            &lt;div class="col-xl-2 col-sm-12"&gt;
+                &lt;button class="custom-button full-width" id="run"&gt;&lt;span class="glyphicon glyphicon-repeat"&gt;&lt;/span&gt;RUN&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col"&gt;
+                &lt;div class="grid-container" id="grid-container"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+                                </div>
+<div class="tab-pane fade" id="css" role="tabpanel" aria-labelledby="contact-tab">
+<pre>
+<code class="language-css line-numbers">.grid-container {
+    display: grid;
+    grid-template-columns: repeat( 12, minmax(50px, 1fr) );
+}
+
+@media (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: repeat( auto-fill, minmax(50px, 1fr) );
+    }
+}
+
+.grid-item {
+    border: 1px solid white;
+    font-size: 30px;
+    text-align: center;
+    transition: background-color 0.15s ease-in;
+}
+</code>
+</pre>
+                                </div>
+                            </div>
+                            <!-- COLLAPSIBLE CODE PREVIEW -->
+        <!--<div class="accordion" id="accordionExample">
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h2 class="mb-0">
@@ -227,8 +251,8 @@ document.getElementById('solve-button').addEventListener('click', function (even
                                     </div>
                                 </div>
                             </div>-->
-                        <!-- END COLLAPSIBLE -->
-                    </div>
+        <!-- END COLLAPSIBLE -->
+</div>
                 </div>
             </div>
         </div>
