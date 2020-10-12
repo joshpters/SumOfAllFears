@@ -60,11 +60,27 @@ table{
     background-color: #242a30;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    overflow-y: scroll;
+
     background-image: url("../Images/ghost.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.scrollable {
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollable::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollable {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
 
 .content-centered {
     display: flex;
@@ -130,12 +146,6 @@ table{
     IE 9 -webkit-transform: translate(-50%, -50%);
     Chrome, Safari, Opera*/
     /*height: 100%;*/
-}
-
-@media (min-width: 992px) {
-    #window {
-        width: 90%;
-    }
 }
 
 html, body {
