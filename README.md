@@ -2,6 +2,8 @@
 
 This is a complete minisite that contains a visual representation of the "Sum Of All Fears" challenge.
 
+![Screenshot](/Images/screenshot.jpg)
+
 This project was created using Bootstrap 4.5, HTML5, CSS3, and JavaScript. All logic & JavaScript DOM changes were custom coded for this project.
 
 ## What is the "Sum Of All Fears" challenge?
