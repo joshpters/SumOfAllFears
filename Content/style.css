@@ -153,6 +153,7 @@ html, body {
     width: 100%;
     background-color: white;
     color: white;
+    overflow: hidden;
 }
 
 .bottom-buffer{
